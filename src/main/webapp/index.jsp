@@ -21,5 +21,6 @@
     %>
 
     <h2><%= "Total Value "+ total %></h2>
+    <h2><%= "Total Value "+ (a/b) %></h2>
 </body>
 </html>
