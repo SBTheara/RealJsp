@@ -14,6 +14,8 @@
         <p> {{ name }} </p>
     </div>
     <script>
+        import Vue from "vue";
+
         new Vue({
             el:"#root",
             data:{
