@@ -2,27 +2,35 @@ package com.example.realjsp;
 
 import java.io.*;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.Person;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "helloServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
-    private String message;
 
-    public void init() {
-        message = "Hello World!";
-    }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String age = request.getParameter("age");
 
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
+        StringBuilder error = new StringBuilder();
+        if (firstName == null) {
+            error.append("A first name was not provided");
+        } else if (lastName == null) {
+            error.append("A last name was not provided");
+        } else if (age == null) {
+            error.append("An age was not provided");
+        }
 
-    public void destroy() {
+        if (error.length() > 0) {
+            request.setAttribute("error", error.toString());
+            request.setAttribute("person", new Person());
+        } else {
+            request.setAttribute("person", new Person());
+        }
+        getServletContext().getRequestDispatcher("/Helloworld.jsp").forward(request, response);
     }
 }
