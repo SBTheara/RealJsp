@@ -26,6 +26,9 @@
             methods:{
                 getInfo(){
                     this.name="Theara"
+                },
+                acceptOnlyNumber(){
+
                 }
             }
         });

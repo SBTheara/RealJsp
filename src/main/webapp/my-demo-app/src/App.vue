@@ -90,7 +90,7 @@ export default {
   }),
   methods: {
     getOption() {
-      alert("you have click for get action")
+      alert("You have got a notification ")
     },
     islike() {
       this.isFavourite = !this.isFavourite;
